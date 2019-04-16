@@ -41,8 +41,22 @@
       $statement->bindParam(':concertID', $this->concert->id, PDO::PARAM_INT);
 
       $statement->execute();
+    }
 
-      //$this->constructSQL($statement->fetch());
+    function update() {
+      $statement = connectToDatabase()->prepare('UPDATE `ticketbuys` SET `name`=(:name),`email`=(:email),`phone`=(:phone),`fk_bonus`=(:bonusID),`fk_concert`=(:concertID),`paid`=(:paid) WHERE id = (:id)');
+
+      $statement->bindParam(':id', $this->id, PDO::PARAM_INT);
+      $statement->bindParam(':name', $this->name, PDO::PARAM_STR);
+      $statement->bindParam(':email', $this->email, PDO::PARAM_STR);
+      $statement->bindParam(':phone', $this->phone, PDO::PARAM_STR);
+      $statement->bindParam(':bonusID', $this->bonus->id, PDO::PARAM_INT);
+      $statement->bindParam(':concertID', $this->concert->id, PDO::PARAM_INT);
+      $statement->bindParam(':paid', $this->paid, PDO::PARAM_INT);
+
+      $statement->execute();
+
+      $this->constructSQL($statement->fetch());
     }
 
     static function getByID(int $id) : TicketBuy{
