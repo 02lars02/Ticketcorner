@@ -8,7 +8,7 @@
   <body>
     <div class="topbar">
       <h1>Nicht bezahlte Tickets</h1>
-      <button class="btn btn-primary" onclick="window.location.href='addTicket'">Neu ...</button>
+      <a class="btn btn-primary" href="addTicket" role="button">Neu ...</a>
     </div>
     <table class="table table-hover">
       <thead>
@@ -29,7 +29,7 @@
             <td><?= $ticketBuy->concert->artist ?></td>
             <td><?= $ticketBuy->getTermDate()->format('d.m.y') ?></td>
             <td><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>
-            <td><button class="btn btn-info" onclick="window.location.href = 'editTicket?id=<?= $ticketBuy->id ?>'">bearbeiten</button></td>
+            <td><a class="btn btn-secondary" href="editTicket?id=<?= $ticketBuy->id ?>" role="button">bearbeiten</a></td>
           </tr>
           <?php
         }

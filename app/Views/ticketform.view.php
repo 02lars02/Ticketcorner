@@ -13,27 +13,27 @@
 </div>
 <form id="form" action="<?= $isEdit ? 'editTicket' : 'addTicket' ?>" method="post">
     <input type="hidden" name="id" value="<?=$ticketBuy->id?>">
-    <div id="error-name" class="error alert alert-danger">
+    <div id="error-name" class="error alert alert-danger" <?php if(sizeof($nameValidation) > 0 ) {?> style="display: block;" <?php } ?> >
       <ul>
-        <li id="error-name-required" class="error error-name">Das Feld Name ist ein Pflichtfeld</li>
-        <li id="error-name-length" class="error error-name">Das Feld Name darf maximal 255 Zeichen lang sein</li>
+        <li id="error-name-required" class="error error-name" <?php if(in_array(Validator::REQUIRED, $nameValidation)) { ?> style="display: list-item;" <?php } ?> >Das Feld Name ist ein Pflichtfeld</li>
+        <li id="error-name-length" class="error error-name" <?php if(in_array(Validator::LENGTH, $nameValidation)) { ?> style="display: list-item;" <?php } ?> >Das Feld Name darf maximal 255 Zeichen lang sein</li>
       </ul>
     </div>
     <label for="name">Name *</label>
     <input type="text" id="name" name="name" class="form-control" value="<?= $ticketBuy->name ?? '' ?>"> <br>
-    <div id="error-email" class="error alert alert-danger">
+    <div id="error-email" class="error alert alert-danger" <?php if(sizeof($emailValidation) > 0 ) {?> style="display: block;" <?php } ?> >
       <ul>
-        <li id="error-email-valid" class="error error-email">Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. max@muster.ch)</li>
-        <li id="error-email-required" class="error error-email">Das Feld E-Mail ist ein Pflichtfeld</li>
-        <li id="error-email-length" class="error error-email">Das Feld E-Mail darf maximal 255 Zeichen lang sein</li>
+        <li id="error-email-valid" class="error error-email" <?php if(in_array(Validator::VALID, $emailValidation)) { ?> style="display: list-item;" <?php } ?> >Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. max@muster.ch)</li>
+        <li id="error-email-required" class="error error-email" <?php if(in_array(Validator::REQUIRED, $emailValidation)) { ?> style="display: list-item;" <?php } ?> >Das Feld E-Mail ist ein Pflichtfeld</li>
+        <li id="error-email-length" class="error error-email" <?php if(in_array(Validator::LENGTH, $emailValidation)) { ?> style="display: list-item;" <?php } ?> >Das Feld E-Mail darf maximal 255 Zeichen lang sein</li>
       </ul>
     </div>
     <label for="email">E-Mail *</label>
     <input type="email" id="email" name="email" class="form-control" value="<?= $ticketBuy->email ?? '' ?>"> <br>
-    <div id="error-phone" class="error alert alert-danger">
+    <div id="error-phone" class="error alert alert-danger" <?php if(sizeof($phoneValidation) > 0 ) {?> style="display: block;" <?php } ?> >
       <ul>
-        <li id="error-phone-valid" class="error error-phone">Bitte geben Sie eine gültige Telefonnummer ein (z.B. +41 41 123 45 67)</li>
-        <li id="error-phone-length" class="error error-phone">Das Feld Telefon darf maximal 20 Zeichen lang sein</li>
+        <li id="error-phone-valid" class="error error-phone" <?php if(in_array(Validator::VALID, $phoneValidation)) { ?> style="display: list-item;" <?php } ?> >Bitte geben Sie eine gültige Telefonnummer ein (z.B. +41 41 123 45 67)</li>
+        <li id="error-phone-length" class="error error-phone" <?php if(in_array(Validator::LENGTH, $phoneValidation)) { ?> style="display: list-item;" <?php } ?> >Das Feld Telefon darf maximal 20 Zeichen lang sein</li>
       </ul>
     </div>
     <label for="phone">Telefon</label>
@@ -41,7 +41,7 @@
     <label for="bonus">Treuebonus *</label>
     <select id="bonus" name="bonus" id="bonus" class="form-control">
         <?php foreach ($bons as $oneBon): ?>
-            <option value="<?= $oneBon->id ?>" termReduction="<?= $oneBon->termReduction ?>" <?php if(isset($ticketBuy) && $oneBon->id == $ticketBuy->bonus->id) { ?> selected <?php }?>><?= $oneBon->text ?></option>
+            <option value="<?= $oneBon->id ?>" termReduction="<?= $oneBon->termReduction ?>" <?php if(isset($ticketBuy) && $oneBon->id == $ticketBuy->bonus->id) { ?> selected <?php }?> ><?= $oneBon->text ?></option>
         <?php endforeach; ?>
     </select><br>
     <label for="term">Zahlungsfrist</label>
@@ -49,15 +49,15 @@
     <label for="concert">Konzert *</label>
     <select id="concert" name="concert" class="form-control">
         <?php foreach ($concerts as $oneConcert): ?>
-            <option value="<?= $oneConcert->id ?>" <?php if(isset($ticketBuy) && $oneConcert->id == $ticketBuy->concert->id) { ?> selected <?php }?>><?= $oneConcert->artist ?></option>
+            <option value="<?= $oneConcert->id ?>" <?php if(isset($ticketBuy) && $oneConcert->id == $ticketBuy->concert->id) { ?> selected <?php }?> ><?= $oneConcert->artist ?></option>
         <?php endforeach; ?>
     </select><br>
     <?php if($isEdit) { ?>
-        <input class="checkbox" type="checkbox" id="paid" name="paid" <?php if($ticketBuy->paid == true){?> checked <?php }?>>
+        <input class="checkbox" type="checkbox" id="paid" name="paid" <?php if($ticketBuy->paid == true){?> checked <?php }?> >
         <label for="paid">Bezahlt</label><br>
     <?php } ?>
     <input class="btn btn-primary" type="submit" value="Speichern">
-    <button class="btn btn-secondary" onclick="window.location.href='notpaid'">Abbrechen</button>
+    <a class="btn btn-secondary" role="button" href="notpaid">Abbrechen</a>
 </form>
 <script>
     $(document).ready(function(){
@@ -83,9 +83,10 @@
         $("#phone").focusout(validatePhone);
 
         function updateTermDate(){
+            var bonus = document.querySelector('#bonus');
             var termDate = new Date(createDate);
             termDate.setDate(createDate.getDate() + 30 - (bonus.options[bonus.selectedIndex].getAttribute("termReduction")));
-            $("#term").attr('value', termDate.toLocaleDateString());
+            $("#term").val(termDate.toLocaleDateString());
         }
 
         function validateName() {
