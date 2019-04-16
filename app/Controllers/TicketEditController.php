@@ -1,4 +1,6 @@
 <?php
+    $isEdit = true;
+
     if($_SERVER["REQUEST_METHOD"] == 'POST') {
         $ticketBuy = TicketBuy::getByID($_POST['id']);
         $ticketBuy->name = $_POST['name'];
@@ -20,6 +22,6 @@
             
             $concerts = Concert::getAllConcerts();
 
-            require 'app/Views/editticket.view.php';
+            require 'app/Views/ticketform.view.php';
         }
     }

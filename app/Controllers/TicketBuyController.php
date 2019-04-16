@@ -1,4 +1,6 @@
 <?php
+$isEdit = false;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $bonus = new Bonus();
@@ -21,5 +23,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $concerts = array();
     $concerts = $concert->getAllConcerts();
 
-    require 'app/Views/addticket.view.php';
+    require 'app/Views/ticketform.view.php';
 }
