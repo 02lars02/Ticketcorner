@@ -1,6 +1,4 @@
 <?php
-  require 'app/Models/Bonus.php';
-  require 'app/Models/Concert.php';
   /**
    *
    */

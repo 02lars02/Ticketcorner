@@ -10,7 +10,7 @@ body.form {
 
 .topbar {
     position: sticky;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     top: 0;
     background-color: white;
     text-align: center;
