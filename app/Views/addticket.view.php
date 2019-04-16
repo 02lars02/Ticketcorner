@@ -12,9 +12,9 @@
 </div>
 <form action="addTicket" method="post">
     <label for="name" class="control-label">Name</label>
-    <input type="text" id="name" name="name" required class="form-control"> <br>
+    <input type="text" id="name" name="name" required class="form-control"><br>
     <label for="email" class="control-label">Email</label>
-    <input type="text" id="email" name="email" required class="form-control"> <br>
+    <input type="email" id="email" name="email" required class="form-control"><br>
     <label for="telefon" class="control-label">Telefon</label>
     <input type="text" id="telefon" name="telefon" class="form-control"><br>
     <label for="bonus" class="control-label">Treuebonus</label>
@@ -29,7 +29,8 @@
             <option value="<?= $oneConcert->id ?>"><?= $oneConcert->artist ?></option>
         <?php endforeach; ?>
     </select><br>
-    <input class="btn btn-primary" type="submit" value="Kauf erfassen"> 
+    <input class="btn btn-primary" type="submit" value="Kauf erfassen">
+    <input class="btn btn-default" type="button" value="Abbrechen" onclick="window.location.href='notpaid'">
 </form>
 
 </body>
