@@ -3,11 +3,11 @@
 
     if($_SERVER["REQUEST_METHOD"] == 'POST') {
         if(Validator::isEmailCorrect($_POST['email'])){
-            if(Validator::isPhoneCorrect($_POST['telefon'])) {
+            if(Validator::isPhoneCorrect($_POST['phone'])) {
                 $ticketBuy = TicketBuy::getByID($_POST['id']);
                 $ticketBuy->name = $_POST['name'];
                 $ticketBuy->email = $_POST['email'];
-                $ticketBuy->phone = $_POST['telefon'];
+                $ticketBuy->phone = $_POST['phone'];
                 $ticketBuy->paid = $_POST['paid'] == 'on';
                 $ticketBuy->concert = Concert::getById($_POST['concert']);
                 $ticketBuy->bonus = Bonus::getById($_POST['bonus']);

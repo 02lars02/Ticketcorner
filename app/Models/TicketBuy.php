@@ -1,7 +1,4 @@
 <?php
-  /**
-   *
-   */
   class TicketBuy  {
     public $id;
     public $createDate;

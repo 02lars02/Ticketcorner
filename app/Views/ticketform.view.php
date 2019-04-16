@@ -36,8 +36,8 @@
         <li id="error-phone-length" class="error error-phone">Das Feld Telefon darf maximal 20 Zeichen lang sein</li>
       </ul>
     </div>
-    <label for="telefon">Telefon</label>
-    <input type="tel" id="telefon" name="telefon" class="form-control" value="<?= $ticketBuy->phone ?? '' ?>"><br>
+    <label for="phone">Telefon</label>
+    <input type="tel" id="phone" name="phone" class="form-control" value="<?= $ticketBuy->phone ?? '' ?>"><br>
     <label for="bonus">Treuebonus *</label>
     <select id="bonus" name="bonus" id="bonus" class="form-control">
         <?php foreach ($bons as $oneBon): ?>
