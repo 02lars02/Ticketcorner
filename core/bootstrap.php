@@ -7,3 +7,4 @@ require 'core/Router.php';
 require 'app/Models/TicketBuy.php';
 require 'app/Models/Bonus.php';
 require 'app/Models/Concert.php';
+require 'app/Models/Validator.php';

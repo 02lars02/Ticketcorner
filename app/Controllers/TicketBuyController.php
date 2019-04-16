@@ -2,7 +2,6 @@
 $isEdit = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require 'app/Models/Validator.php';
     if(Validator::isEmailCorrect($_POST['email'])){
         if(Validator::isPhoneCorrect($_POST['telefon'])) {
 
