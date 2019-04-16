@@ -1,7 +1,7 @@
 <?php
-    require 'app/Models/bonus.php';
+    require 'app/Models/Bonus.php';
 
-    require 'app/Models/concert.php';
+    require 'app/Models/Concert.php';
 
     $bonus = new Bonus();
     $bons = array();
