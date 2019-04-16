@@ -1,6 +1,4 @@
 <?php
-  require 'app/Models/Bonus.php';
-  require 'app/Models/Concert.php';
   /**
    *
    */
@@ -57,8 +55,6 @@
       $statement->bindParam(':paid', $this->paid, PDO::PARAM_INT);
 
       $statement->execute();
-
-      $this->constructSQL($statement->fetch());
     }
 
     static function getByID(int $id) : TicketBuy{

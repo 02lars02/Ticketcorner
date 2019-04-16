@@ -1,5 +1,4 @@
 <?php
-    require 'app/Models/TicketBuy.php';
  
     $ticketBuys = TicketBuy::getNotPaid();
 
