@@ -22,9 +22,9 @@
           ?>
           <tr>
             <td><?= $ticketBuy->name ?></td>
-            <td><?= $ticketBuy->email ?></td>
-            <td><?= $ticketBuy->createDate ?></td>
-            <td><?= $ticketBuy->phone ?></td>
+            <td><?= $ticketBuy->concert->artist ?></td>
+            <td><?= $ticketBuy->createDate->format('d.m.y') ?></td>
+            <td><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>
           </tr>
           <?php
         }
