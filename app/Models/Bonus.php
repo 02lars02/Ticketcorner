@@ -34,8 +34,9 @@
             $statement = $this->db->prepare('SELECT * FROM `bonus` WHERE id = :id');
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();
+            $result = $statement->fetch();
 
-            return $statement->fetch();
+            return new Bonus($result['id'], $result['text'], $result['termReduction']);
         }
     }
 ?>

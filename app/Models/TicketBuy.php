@@ -46,7 +46,7 @@
 
       $statement->execute();
 
-      $this->constructSQL($statement->fetch());
+      //$this->constructSQL($statement->fetch());
     }
 
     function getByID(int $id) {
