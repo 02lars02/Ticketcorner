@@ -75,7 +75,7 @@
     }
 
     static function getNotPaid() : array {
-      $statement = connectToDatabase()->prepare('SELECT t.id, t.createDate, t.name, t.email, t.phone, t.fk_bonus, t.fk_concert, t.paid, b.text, b.termReduction, c.artist FROM `ticketbuys` t INNER JOIN `bonus` b ON b.id = t.fk_bonus INNER JOIN `concerts` c ON c.id = t.fk_concert WHERE t.paid = 0 ORDER BY t.createDate ASC');
+      $statement = connectToDatabase()->prepare('SELECT t.id, t.createDate, t.name, t.email, t.phone, t.fk_bonus, t.fk_concert, t.paid, b.text, b.termReduction, c.artist FROM `ticketbuys` t INNER JOIN `bonus` b ON b.id = t.fk_bonus INNER JOIN `concerts` c ON c.id = t.fk_concert WHERE t.paid = 0 ORDER BY (DATE_ADD(t.createDate, INTERVAL (30 - b.termReduction) DAY)) ASC');
       $statement->bindParam('id', $id, PDO::PARAM_INT);
 
       $statement->execute();
@@ -92,15 +92,19 @@
       return $ticketBuys;
     }
 
-    function getTerm() : int {
+    private function getTerm() : int {
       return 30 - $this->bonus->termReduction;
     }
 
-    function isOverdue() : bool {
+    function getTermDate() : DateTime {
       $dateInterval = new DateInterval('P' . $this->getTerm() . 'D');
-      $added = $this->createDate->add($dateInterval);
+      return $this->createDate->add($dateInterval);
+    }
 
-      $interval = $added->diff(new DateTime());
+    function isOverdue() : bool {
+      $termDate = $this->getTermDate();
+
+      $interval = $termDate->diff(new DateTime());
 
       return $interval->invert == 0;
     }
