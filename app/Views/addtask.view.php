@@ -17,16 +17,17 @@
     <input type="text" name="telefon"><br>
     <label value="bonus">Treuebonus</label>
     <select name="bonus">
-        <option value="zero">kein Rabatt</option>
-        <option value="five">5% Rabbat</option>
-        <option value="ten">10% Rabatt</option>
-        <option value="fifteen">15% Rabatt</option>
+        <?php foreach ($bons as $oneBon): ?>
+            <option value="<?= $oneBon->id ?>"><?= $oneBon->text ?></option>
+        <?php endforeach; ?>
     </select><br>
     <label value="concert">Konzert</label>
     <select name="concert">
-        <?php echo get_concerts(); ?> <!-- help: https://www.youtube.com/watch?v=2FdDU7jYvoI -->
+        <?php foreach ($concerts as $oneConcert): ?>
+            <option value="<?= $oneConcert->id ?>"><?= $oneConcert->artist ?></option>
+        <?php endforeach; ?>
     </select><br>
-    <input type="submit" value="Kauf erfassen"> <!-- At moment, will not be shown because of undefind methode above -->
+    <input type="submit" value="Kauf erfassen"> 
 </form>
 
 </body>
