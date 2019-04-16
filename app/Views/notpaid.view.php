@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Nicht Bezahlte Tickets</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="public/css/app.css">
+    <?php require 'core/basicincludes.php'; ?>
   </head>
   <body>
     <div class="topbar">
@@ -30,7 +29,7 @@
             <td><?= $ticketBuy->concert->artist ?></td>
             <td><?= $ticketBuy->createDate->format('d.m.y') ?></td>
             <td><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>
-            <td><button class="btn btn-info" onclick="window.location.href = 'edit?id=<?= $ticketBuy->id ?>'">bearbeiten</button></td>
+            <td><button class="btn btn-info" onclick="window.location.href = 'editTicket?id=<?= $ticketBuy->id ?>'">bearbeiten</button></td>
           </tr>
           <?php
         }
