@@ -10,7 +10,7 @@
             $this->termReduction = $termReduction;
         }
 
-        static function getAllBonus() {
+        public static function getAllBonus() {
             $statement = connectToDatabase()->prepare('SELECT * FROM `bonus`');
             $statement->execute();
             $result = $statement->fetchAll();
