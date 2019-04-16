@@ -6,10 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(Validator::isEmailCorrect($_POST['email'])){
         if(Validator::isPhoneCorrect($_POST['telefon'])) {
 
-            $bonus = new Bonus();
-            $bon = $bons = $bonus->getById($_POST['bonus']);
-            $concert = new Concert();
-            $con = $concert->getById($_POST['concert']);
+            $bon = Bonus::getById($_POST['bonus']);
+            $con = Concert::getById($_POST['concert']);
 
             $ticket = new TicketBuy($_POST['name'], $_POST['email'], $_POST['telefon'], $bon, $con);
             $ticket->create();
@@ -22,13 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: addTicket');
     }
 } else {
-    $bonus = new Bonus();
     $bons = array();
-    $bons = $bonus->getAllBonus();        
+    $bons = Bonus::getAllBonus();        
     
-    $concert = new Concert();
     $concerts = array();
-    $concerts = $concert->getAllConcerts();
+    $concerts = COncert::getAllConcerts();
 
     require 'app/Views/ticketform.view.php';
 }

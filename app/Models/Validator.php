@@ -13,10 +13,14 @@
         }
 
         public static function isPhoneCorrect($phone) {
-            if(preg_match("/^[0-9()+\/-]+$/", $phone)) {
+            if($phone === '') {
                 return true;
             } else {
-                return false;
+                if(preg_match("/^[0-9()+\/-]+$/", $phone)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
     }
