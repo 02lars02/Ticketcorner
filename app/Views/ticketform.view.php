@@ -108,7 +108,7 @@
             $("#error-email-valid").css("display", "none");
             valid = true;
           } else {
-            $("#error-email-valid").css("display", "block");
+            $("#error-email-valid").css("display", "list-item");
             valid = false;
           }
 
@@ -125,7 +125,7 @@
             $("#error-phone-valid").css("display", "none");
             valid = true;
           } else {
-            $("#error-phone-valid").css("display", "block");
+            $("#error-phone-valid").css("display", "list-item");
             valid = false;
           }
 
@@ -134,7 +134,7 @@
 
         function validateRequired(id) {
           if ($("#" + id).val().trim().length < 1) {
-            $("#error-" + id + "-required").css("display", "block");
+            $("#error-" + id + "-required").css("display", "list-item");
             return false;
           } else {
             $("#error-" + id + "-required").css("display", "none");
@@ -144,7 +144,7 @@
 
         function validateLength(id, length) {
           if ($("#" + id).val().trim().length > length) {
-            $("#error-" + id + "-length").css("display", "block");
+            $("#error-" + id + "-length").css("display", "list-item");
             return false;
           } else {
             $("#error-" + id + "-length").css("display", "none");
