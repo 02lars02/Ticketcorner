@@ -20,7 +20,7 @@
       </ul>
     </div>
     <label for="name">Name *</label>
-    <input type="text" id="name" name="name" required class="form-control" value="<?= $ticketBuy->name ?? '' ?>"> <br>
+    <input type="text" id="name" name="name" class="form-control" value="<?= $ticketBuy->name ?? '' ?>"> <br>
     <div id="error-email" class="error alert alert-danger">
       <ul>
         <li id="error-email-valid" class="error error-email">Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. max@muster.ch)</li>
@@ -29,7 +29,7 @@
       </ul>
     </div>
     <label for="email">E-Mail *</label>
-    <input type="email" id="email" name="email" required class="form-control" value="<?= $ticketBuy->email ?? '' ?>"> <br>
+    <input type="email" id="email" name="email" class="form-control" value="<?= $ticketBuy->email ?? '' ?>"> <br>
     <div id="error-phone" class="error alert alert-danger">
       <ul>
         <li id="error-phone-valid" class="error error-phone">Bitte geben Sie eine gültige Telefonnummer ein (z.B. +41 41 123 45 67)</li>
@@ -65,7 +65,13 @@
         updateTermDate();
 
         $("#form").submit(function(event){
+          var name = validateName();
+          var email = validateEmail();
+          var phone = validatePhone();
 
+          if(!name || !email || !phone){
+            event.preventDefault();
+          }
         });
 
         $('#bonus').change(updateTermDate);
@@ -73,6 +79,8 @@
         $("#name").focusout(validateName);
 
         $("#email").focusout(validateEmail);
+
+        $("#phone").focusout(validatePhone);
 
         function updateTermDate(){
             var termDate = new Date(createDate);
@@ -83,33 +91,45 @@
         function validateName() {
           var toReturn = true;
 
-          if (!validateRequired("name")) {
-            toReturn = false;
-          }
+          var required = validateRequired("name");
 
-          if (!validateLength("name", 255)) {
-            toReturn = false;
-          }
+          var length = validateLength("name", 255);
 
-          return setContainerVisability("name");
+          return setContainerVisability("name", required && length);
         }
 
         function validateEmail() {
-          if (!validateRequired("email")) {
-            toReturn = false;
-          }
+          var required = validateRequired("email");
 
-          if (!validateLength("email", 255)) {
-            toReturn = false;
-          }
+          var length = validateLength("email", 255);
 
-           if (!toReturn || /^.+@.+\..{2,}$/.test($("#email").val().trim())) {
+          var valid;
+          if (!required || /^.+@.+\..{2,}$/.test($("#email").val().trim())) {
             $("#error-email-valid").css("display", "none");
+            valid = true;
           } else {
             $("#error-email-valid").css("display", "block");
+            valid = false;
           }
 
-          return setContainerVisability("email");
+          return setContainerVisability("email", required && length && valid);
+        }
+
+        function validatePhone() {
+          var length = validateLength("phone", 20);
+
+          var isEmpty = $("#phone").val().trim().length < 1;
+
+          var valid;
+          if (isEmpty || /^[0-9()+\/-]+$/.test($("#phone").val().trim())) {
+            $("#error-phone-valid").css("display", "none");
+            valid = true;
+          } else {
+            $("#error-phone-valid").css("display", "block");
+            valid = false;
+          }
+
+          return setContainerVisability("phone", length && valid);
         }
 
         function validateRequired(id) {
