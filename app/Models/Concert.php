@@ -2,16 +2,14 @@
     class Concert {
         public $id;
         public $artist;
-        public $db;
         
         function __construct($id = null, $artist = null) {
             $this->id = $id;
             $this->artist = $artist;
-            $this->db = connectToDatabase();
         }
 
-        function getAllConcerts() {
-            $statement = $this->db->prepare('SELECT * FROM `concerts`');
+        public static function getAllConcerts() {
+            $statement = connectToDatabase()->prepare('SELECT * FROM `concerts`');
             $statement->execute();
             $result = $statement->fetchAll();
             $concerts = array();
@@ -22,15 +20,15 @@
         }
 
         public function create() {
-            $statement = $this->db->prepare('INSERT INTO `concerts` (artist) VALUES (:artist)');
+            $statement = connectToDatabase()->prepare('INSERT INTO `concerts` (artist) VALUES (:artist)');
             $statement->bindParam(':artist', $this->artist, PDO::PARAM_STR);
 
             return $statement->execute();
         }
 
-        public function getById($id)
+        public static function getById($id)
         {
-        $statement = $this->db->prepare('SELECT * FROM `concerts` WHERE id = :id');
+        $statement = connectToDatabase()->prepare('SELECT * FROM `concerts` WHERE id = :id');
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch();
