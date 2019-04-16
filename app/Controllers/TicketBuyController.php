@@ -3,12 +3,12 @@ $isEdit = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(Validator::isEmailCorrect($_POST['email'])){
-        if(Validator::isPhoneCorrect($_POST['telefon'])) {
+        if(Validator::isPhoneCorrect($_POST['phone'])) {
 
             $bon = Bonus::getById($_POST['bonus']);
             $con = Concert::getById($_POST['concert']);
 
-            $ticket = new TicketBuy($_POST['name'], $_POST['email'], $_POST['telefon'], $bon, $con);
+            $ticket = new TicketBuy($_POST['name'], $_POST['email'], $_POST['phone'], $bon, $con);
             $ticket->create();
 
             header('Location: notpaid');

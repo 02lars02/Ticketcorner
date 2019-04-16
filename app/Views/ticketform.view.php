@@ -17,8 +17,8 @@
     <input type="text" id="name" name="name" required class="form-control" value="<?= $ticketBuy->name ?? '' ?>"> <br>
     <label for="email">Email</label>
     <input type="email" id="email" name="email" required class="form-control" value="<?= $ticketBuy->email ?? '' ?>"> <br>
-    <label for="telefon">Telefon</label>
-    <input type="tel" id="telefon" name="telefon" class="form-control" value="<?= $ticketBuy->phone ?? '' ?>"><br>
+    <label for="phone">Telefon</label>
+    <input type="tel" id="phone" name="phone" class="form-control" value="<?= $ticketBuy->phone ?? '' ?>"><br>
     <label for="bonus">Treuebonus</label>
     <select id="bonus" name="bonus" id="bonus" class="form-control">
         <?php foreach ($bons as $oneBon): ?>
