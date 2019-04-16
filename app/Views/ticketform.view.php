@@ -70,10 +70,37 @@
 
         $('#bonus').change(updateTermDate);
 
+        $("#name").focusout(validateName);
+
         function updateTermDate(){
             var termDate = new Date(createDate);
             termDate.setDate(createDate.getDate() + 30 - (bonus.options[bonus.selectedIndex].getAttribute("termReduction")));
             $("#term").attr('value', termDate.toLocaleDateString());
+        }
+
+        function validateName() {
+          var toReturn = true;
+          if ($("#name").val().trim().length < 1) {
+            $("#error-name-required").css("display", "block");
+            toReturn = false;
+          } else {
+            $("#error-name-required").css("display", "none");
+          }
+
+          if ($("#name").val().trim().length > 255) {
+            $("#error-name-length").css("display", "block");
+            toReturn = false;
+          } else {
+            $("#error-name-length").css("display", "none");
+          }
+
+          if (toReturn) {
+            $("#error-name").css("display", "none");
+          } else {
+            $("#error-name").css("display", "block");
+          }
+
+          return toReturn;
         }
     });
 

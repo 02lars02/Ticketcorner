@@ -24,3 +24,7 @@ table {
 .error ul {
   margin-bottom: 0;
 }
+
+.error {
+  display: none;
+}
