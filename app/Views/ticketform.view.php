@@ -72,6 +72,8 @@
 
         $("#name").focusout(validateName);
 
+        $("#email").focusout(validateEmail);
+
         function updateTermDate(){
             var termDate = new Date(createDate);
             termDate.setDate(createDate.getDate() + 30 - (bonus.options[bonus.selectedIndex].getAttribute("termReduction")));
@@ -80,26 +82,62 @@
 
         function validateName() {
           var toReturn = true;
-          if ($("#name").val().trim().length < 1) {
-            $("#error-name-required").css("display", "block");
+
+          if (!validateRequired("name")) {
             toReturn = false;
-          } else {
-            $("#error-name-required").css("display", "none");
           }
 
-          if ($("#name").val().trim().length > 255) {
-            $("#error-name-length").css("display", "block");
+          if (!validateLength("name", 255)) {
             toReturn = false;
-          } else {
-            $("#error-name-length").css("display", "none");
           }
 
+          return setContainerVisability("name");
+        }
+
+        function validateEmail() {
+          if (!validateRequired("email")) {
+            toReturn = false;
+          }
+
+          if (!validateLength("email", 255)) {
+            toReturn = false;
+          }
+
+           if (!toReturn || /^.+@.+\..{2,}$/.test($("#email").val().trim())) {
+            $("#error-email-valid").css("display", "none");
+          } else {
+            $("#error-email-valid").css("display", "block");
+          }
+
+          return setContainerVisability("email");
+        }
+
+        function validateRequired(id) {
+          if ($("#" + id).val().trim().length < 1) {
+            $("#error-" + id + "-required").css("display", "block");
+            return false;
+          } else {
+            $("#error-" + id + "-required").css("display", "none");
+            return true;
+          }
+        }
+
+        function validateLength(id, length) {
+          if ($("#" + id).val().trim().length > length) {
+            $("#error-" + id + "-length").css("display", "block");
+            return false;
+          } else {
+            $("#error-" + id + "-length").css("display", "none");
+            return true;
+          }
+        }
+
+        function setContainerVisability(id, toReturn) {
           if (toReturn) {
-            $("#error-name").css("display", "none");
+            $("#error-" + id).css("display", "none");
           } else {
-            $("#error-name").css("display", "block");
+            $("#error-" + id).css("display", "block");
           }
-
           return toReturn;
         }
     });
