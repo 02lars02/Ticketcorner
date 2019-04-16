@@ -1,3 +1,21 @@
 body {
+    max-width: 1800px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+body.form {
+    max-width: 1000px;
+}
+
+.topbar {
+    position: sticky;
+    margin-bottom: 10px;
+    top: 0;
+    background-color: white;
+    text-align: center;
+}
+
+table {
     text-align: center;
 }
