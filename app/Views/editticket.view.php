@@ -27,7 +27,7 @@
             <option value="<?= $oneConcert->id ?>"><?= $oneConcert->artist ?></option>
         <?php endforeach; ?>
     </select><br>
-    <input class="checkbox" type="checkbox" name="paid">
+    <input class="checkbox" type="checkbox" id="paid" name="paid">
     <label for="paid">Bezahlt</label><br>
     <input class="btn btn-primary" type="submit" value="Speichern">
     <button class="btn btn-default" onclick="window.location.href='notpaid'">Abbrechen</button>
