@@ -10,13 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ticket = new TicketBuy($_POST['name'], $_POST['email'], $_POST['telefon'], $bon, $con);
     $ticket->create();
 
+    header('Location: notpaid');
 } else {
     //initialize for first entry
     require 'app/Models/Bonus.php';
     require 'app/Models/Concert.php';
-}
 
-$bonus = new Bonus();
+    $bonus = new Bonus();
     $bons = array();
     $bons = $bonus->getAllBonus();        
     
@@ -25,3 +25,4 @@ $bonus = new Bonus();
     $concerts = $concert->getAllConcerts();
 
     require 'app/Views/addticket.view.php';
+}

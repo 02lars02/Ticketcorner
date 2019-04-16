@@ -3,7 +3,7 @@
 $router = new Router();
 
 $router->define([
+    '' => 'app/Controllers/ShowNotPaidController.php',
     'notpaid' => 'app/Controllers/ShowNotPaidController.php',
-    '' => 'app/Controllers/TicketBuyController.php',
     'addTicket' => 'app/Controllers/TicketBuyController.php'
 ]);
