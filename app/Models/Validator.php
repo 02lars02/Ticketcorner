@@ -13,7 +13,7 @@
         }
 
         public static function isPhoneCorrect($phone) {
-            if(preg_match('[\d\+\- \/\(\)]+', $phone)) {
+            if(preg_match("/^[0-9()+\/-]+$/", $phone)) {
                 return true;
             } else {
                 return false;
