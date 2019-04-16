@@ -8,7 +8,7 @@
 <body>
 
 <h2>Ticketkauf erfassen</h2>
-<form action="addtask" method="post">
+<form action="addTicket" method="post">
     <label for="name">Name</label>
     <input type="text" name="name" required> <br>
     <label for="email">Email</label>

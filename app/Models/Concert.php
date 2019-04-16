@@ -27,4 +27,14 @@
 
             return $statement->execute();
         }
+
+        public function getById($id)
+        {
+        $statement = $this->db->prepare('SELECT * FROM `concerts` WHERE id = :id');
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetch();
+
+        return new Concert($result['id'], $result['artist']);
+        }
     }

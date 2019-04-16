@@ -1,7 +1,7 @@
 <?php
-    require 'app/Modals/Bonus.php';
+    require 'app/Models/bonus.php';
 
-    require 'app/Modals/Concert.php';
+    require 'app/Models/concert.php';
 
     $bonus = new Bonus();
     $bons = array();
@@ -11,5 +11,4 @@
     $concerts = array();
     $concerts = $concert->getAllConcerts();
 
-    require 'app/Views/addtask.view.php';
-
+    require 'app/Views/editticket.view.php';

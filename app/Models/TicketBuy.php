@@ -44,7 +44,7 @@
 
       $statement->execute();
 
-      $this->constructSQL($statement->fetch());
+      //$this->constructSQL($statement->fetch());
     }
 
     static function getByID(int $id) : TicketBuy{

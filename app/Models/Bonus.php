@@ -24,10 +24,19 @@
         }
 
         public function create() {
-            $statement = $this->db->prepare('INSERT INTO `concerts` (artist) VALUES (:artist)');
+            $statement = $this->db->prepare('INSERT INTO `bonus` (artist) VALUES (:artist)');
             $statement->bindParam(':artist', $this->artist, PDO::PARAM_STR);
 
             return $statement->execute();
+        }
+
+        public function getById($id) {
+            $statement = $this->db->prepare('SELECT * FROM `bonus` WHERE id = :id');
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+            $result = $statement->fetch();
+
+            return new Bonus($result['id'], $result['text'], $result['termReduction']);
         }
     }
 ?>
