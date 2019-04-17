@@ -9,7 +9,7 @@
     <form class="" action="ticketpaid" method="post">
       <div class="topbar">
         <h1>Nicht bezahlte Tickets</h1>
-        <a class="btn btn-primary" href="addTicket" role="button">Neu ...</a> <input type="submit" id="setPaid" class="btn btn-secondary" name="" value="wurden bezahlt" disabled>
+        <a class="btn btn-primary" href="addTicket" role="button">Neu</a> <input type="submit" id="setPaid" class="btn btn-secondary" name="" value="wurden bezahlt" disabled>
       </div>
       <table class="table table-striped">
         <thead>
