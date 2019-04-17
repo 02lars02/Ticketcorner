@@ -2,7 +2,7 @@
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Nicht Bezahlte Tickets - Tikitas</title>
+    <title>Nicht bezahlte Tickets - Tikitas</title>
     <?php require 'core/basicincludes.php'; ?>
   </head>
   <body>
