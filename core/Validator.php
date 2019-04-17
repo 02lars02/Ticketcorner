@@ -46,11 +46,35 @@
             if(strlen(trim($phone)) > 20) {
               array_push($toReturn, self::LENGTH);
             }
-            
+
             if(trim($phone) != '' &&  !preg_match("/^[0-9() +\/\\-]+$/", $phone)) {
                 array_push($toReturn, self::VALID);
             }
 
             return $toReturn;
+        }
+
+        public static function isBonusCorrect(string $bonus = '') : bool{
+          if(!is_numeric($bonus)) {
+            return false;
+          }
+          foreach (Bonus::getAllBonus() as $key => $value) {
+            if($value->id == $bonus){
+              return true;
+            }
+          }
+          return false;
+        }
+
+        public static function isConcertCorrect(string $concert = '') : bool{
+          if(!is_numeric($concert)) {
+            return false;
+          }
+          foreach (Concert::getAllConcerts() as $key => $value) {
+            if($value->id == $concert){
+              return true;
+            }
+          }
+          return false;
         }
     }

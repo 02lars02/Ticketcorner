@@ -38,6 +38,11 @@
     </div>
     <label for="phone">Telefon</label>
     <input type="tel" id="phone" name="phone" class="form-control" value="<?= $ticketBuy->phone ?? '' ?>"><br>
+    <div id="error-bonus" class="error alert alert-danger" <?php if(!$bonusValidation) {?> style="display: block;" <?php } ?> >
+      <ul>
+        <li id="error-bonus-required">Bitte wählen Sie einen Treuebonus aus</li>
+      </ul>
+    </div>
     <label for="bonus">Treuebonus *</label>
     <select id="bonus" name="bonus" id="bonus" class="form-control">
         <?php foreach ($bons as $oneBon): ?>
@@ -46,6 +51,11 @@
     </select><br>
     <label for="term">Zahlungsfrist</label>
     <input type="text" id="term" name="term" required class="form-control" disabled> <br>
+    <div id="error-concert" class="error alert alert-danger" <?php if(!$concertValidation) {?> style="display: block;" <?php } ?> >
+      <ul>
+        <li id="error-concert-required">Bitte wählen Sie ein Konzert aus</li>
+      </ul>
+    </div>
     <label for="concert">Konzert *</label>
     <select id="concert" name="concert" class="form-control">
         <?php foreach ($concerts as $oneConcert): ?>
