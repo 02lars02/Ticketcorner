@@ -103,7 +103,7 @@
     }
 
     static function setPaid(array $ids) {
-      //$idString = join(', ', $ids);
+      $idString = join(', ', $ids);
 
       $statement = connectToDatabase()->prepare('UPDATE `ticketbuys` SET `paid` = 1 WHERE id IN(' . $idString .')');
 
