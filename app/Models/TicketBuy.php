@@ -91,7 +91,8 @@
 
     function getTermDate() : DateTime {
       $dateInterval = new DateInterval('P' . $this->getTerm() . 'D');
-      return $this->createDate->add($dateInterval);
+      $createDate = new DateTime($this->createDate->format("y-m-d h:i:s"));
+      return $createDate->add($dateInterval);
     }
 
     function isOverdue() : bool {
