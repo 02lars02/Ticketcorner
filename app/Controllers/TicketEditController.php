@@ -10,14 +10,15 @@
       $emailValidation = Validator::isEmailCorrect($_POST['email'] ?? '');
       $phoneValidation = Validator::isPhoneCorrect($_POST['phone'] ?? '');
 
+      $ticketBuy = TicketBuy::getByID($_POST['id']);
+      $ticketBuy->name = trim($_POST['name'] ?? '');
+      $ticketBuy->email = trim($_POST['email'] ?? '');
+      $ticketBuy->phone = trim($_POST['phone'] ?? '');
+      $ticketBuy->paid = trim($_POST['paid'] ?? '' == 'on');
+      $ticketBuy->concert = Concert::getById($_POST['concert'] ?? '1');
+      $ticketBuy->bonus = Bonus::getById($_POST['bonus'] ?? '1');
+
       if (sizeof($nameValidation) == 0 && sizeof($emailValidation) == 0 && sizeof($phoneValidation) == 0) {
-        $ticketBuy = TicketBuy::getByID($_POST['id']);
-        $ticketBuy->name = trim($_POST['name'] ?? '');
-        $ticketBuy->email = trim($_POST['email'] ?? '');
-        $ticketBuy->phone = trim($_POST['phone'] ?? '');
-        $ticketBuy->paid = trim($_POST['paid'] == 'on');
-        $ticketBuy->concert = Concert::getById($_POST['concert']);
-        $ticketBuy->bonus = Bonus::getById($_POST['bonus']);
         $ticketBuy->update();
         header('Location: notpaid');
       }
@@ -28,7 +29,6 @@
         if($ticketBuy == null) {
             header('Location: notpaid');
         }
-
     }
 
     $bons = Bonus::getAllBonus();
