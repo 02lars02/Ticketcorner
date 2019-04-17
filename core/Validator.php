@@ -78,7 +78,7 @@
           return false;
         }
 
-        public static function areIdsCorrect(array $ids) : bool {
+        public static function areIdsCorrect($ids) : bool {
           if(!is_array($ids)) {
             return false;
           }
