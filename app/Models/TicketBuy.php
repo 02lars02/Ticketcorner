@@ -29,8 +29,7 @@
     }
 
     function create() {
-      $statement = connectToDatabase()->prepare('INSERT INTO ticketbuys (name, email, phone, fk_bonus, fk_concert) VALUES (:name, :email, :phone, :bonusID, :concertID);' .
-      'SELECT t.id, t.createDate, t.name, t.email, t.phone, t.fk_bonus, t.fk_concert, t.paid, b.text, b.termReduction, c.artist FROM `ticketbuys` t INNER JOIN `bonus` b ON b.id = t.fk_bonus INNER JOIN `concerts` c ON c.id = t.fk_concert WHERE t.id = LAST_INSERT_ID()');
+      $statement = connectToDatabase()->prepare('INSERT INTO ticketbuys (name, email, phone, fk_bonus, fk_concert) VALUES (:name, :email, :phone, :bonusID, :concertID)');
       $statement->bindParam(':name', $this->name, PDO::PARAM_STR);
       $statement->bindParam(':email', $this->email, PDO::PARAM_STR);
       $statement->bindParam(':phone', $this->phone, PDO::PARAM_STR);
@@ -104,12 +103,11 @@
     }
 
     static function setPaid(array $ids) {
-      $idString = join(',', $ids);
-      $test = 'UPDATE `ticketbuys` SET `paid` = 1 WHERE id IN((:ids)) ';
-      echo $test;
-      echo $idString;
-      $statement = connectToDatabase()->prepare($test);
-      $statement->bindParam(':ids', $idString);
+      //$idString = join(', ', $ids);
+
+      $statement = connectToDatabase()->prepare('UPDATE `ticketbuys` SET `paid` = 1 WHERE id IN(' . $idString .')');
+
+      //$statement->bindParam(':ids', $idString, PDO::PARAM_INT);
 
       $statement->execute();
     }

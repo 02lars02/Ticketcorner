@@ -20,7 +20,7 @@
       </ul>
     </div>
     <label for="name">Name *</label>
-    <input type="text" id="name" name="name" class="form-control" value="<?= $ticketBuy->name ?? '' ?>"> <br>
+    <input type="text" id="name" name="name" class="form-control" value="<?= $ticketBuy->name ?? '' ?>" required> <br>
     <div id="error-email" class="error alert alert-danger" <?php if(sizeof($emailValidation) > 0 ) {?> style="display: block;" <?php } ?> >
       <ul>
         <li id="error-email-valid" class="error error-email" <?php if(in_array(Validator::VALID, $emailValidation)) { ?> style="display: list-item;" <?php } ?> >Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. max@muster.ch)</li>
@@ -29,7 +29,7 @@
       </ul>
     </div>
     <label for="email">E-Mail *</label>
-    <input type="email" id="email" name="email" class="form-control" value="<?= $ticketBuy->email ?? '' ?>"> <br>
+    <input type="email" id="email" name="email" class="form-control" value="<?= $ticketBuy->email ?? '' ?>" required> <br>
     <div id="error-phone" class="error alert alert-danger" <?php if(sizeof($phoneValidation) > 0 ) {?> style="display: block;" <?php } ?> >
       <ul>
         <li id="error-phone-valid" class="error error-phone" <?php if(in_array(Validator::VALID, $phoneValidation)) { ?> style="display: list-item;" <?php } ?> >Bitte geben Sie eine gültige Telefonnummer ein (z.B. +41 41 123 45 67)</li>
