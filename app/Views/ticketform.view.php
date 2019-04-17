@@ -61,7 +61,7 @@
 </form>
 <script>
     $(document).ready(function(){
-        var createDate = <?= isset($ticketBuy) ? "new Date('" . $ticketBuy->createDate->format(DateTimeInterface::ISO8601) . "')" : "new Date()" ?>;
+        var createDate = <?= isset($ticketBuy) ? "new Date('" . $ticketBuy->createDate->format("Y-m-d\Th:m:s") . "')" : "new Date()" ?>;
         updateTermDate();
 
         $("#form").submit(function(event){
