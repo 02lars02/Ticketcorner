@@ -47,7 +47,7 @@
               array_push($toReturn, self::LENGTH);
             }
             
-            if(trim($phone) != '' &&  !preg_match("/^[0-9() +\/\\-]+$/", $phone)) {
+            if(trim($phone) != '' &&  !preg_match("/^[0-9() +\/-]+$/", $phone)) {
                 array_push($toReturn, self::VALID);
             }
 
