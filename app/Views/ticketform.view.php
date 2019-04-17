@@ -122,7 +122,7 @@
           var isEmpty = $("#phone").val().trim().length < 1;
 
           var valid;
-          if (isEmpty || /^[0-9()+\/-]+$/.test($("#phone").val().trim())) {
+          if (isEmpty || /^[0-9() +\/\\-]+$/.test($("#phone").val().trim())) {
             $("#error-phone-valid").css("display", "none");
             valid = true;
           } else {

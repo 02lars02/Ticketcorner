@@ -33,7 +33,7 @@
               array_push($toReturn, self::LENGTH);
             }
 
-            if(trim($email) != '' &&  !preg_match("/^.+@.+\..{2,}$/", $phone)) {
+            if(trim($email) != '' &&  !preg_match("/^.+@.+\..{2,}$/", $email)) {
                 array_push($toReturn, self::VALID);
             }
 
@@ -46,8 +46,8 @@
             if(strlen(trim($phone)) > 20) {
               array_push($toReturn, self::LENGTH);
             }
-
-            if(trim($phone) != '' &&  !preg_match("/^[0-9()+\/-]+$/", $phone)) {
+            
+            if(trim($phone) != '' &&  !preg_match("/^[0-9() +\/\\-]+$/", $phone)) {
                 array_push($toReturn, self::VALID);
             }
 
