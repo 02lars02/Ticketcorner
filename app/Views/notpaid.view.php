@@ -28,7 +28,7 @@
             <td><?= $ticketBuy->name ?></td>
             <td><?= $ticketBuy->concert->artist ?></td>
             <td><?= $ticketBuy->getTermDate()->format('d.m.y') ?></td>
-            <td><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>
+            <td class="state"><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>
             <td><a class="btn btn-secondary" href="editTicket?id=<?= $ticketBuy->id ?>" role="button">bearbeiten</a></td>
           </tr>
           <?php

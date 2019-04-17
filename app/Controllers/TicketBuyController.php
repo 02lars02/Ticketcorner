@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bon = Bonus::getById($_POST['bonus']);
     $con = Concert::getById($_POST['concert']);
 
-    $ticket = new TicketBuy(trim($_POST['name'] ?? ''), trim($_POST['email'] ?? ''), trim($_POST['phone'] ?? ''), $bon, $con);
+    $ticketBuy = new TicketBuy(trim($_POST['name'] ?? ''), trim($_POST['email'] ?? ''), trim($_POST['phone'] ?? ''), $bon, $con);
 
     if (sizeof($nameValidation) == 0 && sizeof($emailValidation) == 0 && sizeof($phoneValidation) == 0) {
-      $ticket->create();
+      $ticketBuy->create();
 
       header('Location: notpaid');
     }
