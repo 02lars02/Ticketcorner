@@ -102,6 +102,17 @@
 
       return $interval->invert == 0;
     }
+
+    static function setPaid(array $ids) {
+      $idString = join(',', $ids);
+      $test = 'UPDATE `ticketbuys` SET `paid` = 1 WHERE id IN((:ids)) ';
+      echo $test;
+      echo $idString;
+      $statement = connectToDatabase()->prepare($test);
+      $statement->bindParam(':ids', $idString);
+
+      $statement->execute();
+    }
   }
 
  ?>

@@ -16,7 +16,7 @@
       $ticketBuy->name = trim($_POST['name'] ?? '');
       $ticketBuy->email = trim($_POST['email'] ?? '');
       $ticketBuy->phone = trim($_POST['phone'] ?? '');
-      $ticketBuy->paid = trim($_POST['paid'] ?? '' == 'on');
+      $ticketBuy->paid = trim($_POST['paid'] ?? '') == 'on';
       $ticketBuy->concert = Concert::getById($_POST['concert'] ?? '1');
       $ticketBuy->bonus = Bonus::getById($_POST['bonus'] ?? '1');
 

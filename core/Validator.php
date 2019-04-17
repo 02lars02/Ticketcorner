@@ -77,4 +77,15 @@
           }
           return false;
         }
+
+        public static function areIdsCorrect(array $ids) : bool {
+          if(!is_array($ids)) {
+            return false;
+          }
+          $toReturn = true;
+          foreach ($ids as $key => $value) {
+            $toReturn = $toReturn && is_numeric($value);
+          }
+          return $toReturn;
+        }
     }
