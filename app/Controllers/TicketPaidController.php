@@ -2,12 +2,9 @@
 
 if($_SERVER["REQUEST_METHOD"] == 'POST' && Validator::areIdsCorrect($_POST['ids'] ?? '')) {
   TicketBuy::setPaid($_POST['ids']);
-  header('Location: notpaid');
-} else if($_GET["id"] == null || !is_numeric($_GET["id"])) {
-  header('Location: notpaid');
-} else {
+} else if(is_numeric($_GET["id"])) {
   TicketBuy::setPaid([$_GET['id']]);
-  header('Location: notpaid');
 }
+header('Location: notpaid');
 
 ?>

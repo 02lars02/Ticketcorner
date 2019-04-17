@@ -2,7 +2,7 @@
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Nicht Bezahlte Tickets</title>
+    <title>Nicht Bezahlte Tickets - Tikitas</title>
     <?php require 'core/basicincludes.php'; ?>
   </head>
   <body>
@@ -16,6 +16,7 @@
           <tr>
             <th> <input type="checkbox" id="multi-selector" class="checkbox"  name="all" value="true"> </th>
             <th>Name</th>
+            <th>E-Mail</th>
             <th>Konzert</th>
             <th>Zahlungsfrist</th>
             <th>Status</th>
@@ -29,6 +30,7 @@
             <tr>
               <td> <input type="checkbox" class="checkbox multi-selectable" name="ids[]" value="<?= $ticketBuy->id ?>"> </td>
               <td><?= $ticketBuy->name ?></td>
+              <td><?= $ticketBuy->email ?></td>
               <td><?= $ticketBuy->concert->artist ?></td>
               <td><?= $ticketBuy->getTermDate()->format('d.m.Y') ?></td>
               <td class="state"><?= $ticketBuy->isOverdue() == 1 ? '	&#8987;'/*Overdue*/ : '&#9203;'/*in Progress*/ ?></td>

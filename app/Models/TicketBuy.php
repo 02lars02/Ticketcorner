@@ -107,7 +107,7 @@
 
       $statement = connectToDatabase()->prepare('UPDATE `ticketbuys` SET `paid` = 1 WHERE id IN(' . $idString .')');
 
-      //$statement->bindParam(':ids', $idString, PDO::PARAM_INT);
+      // SQL-Injection wird in Validator.php auf Zeile 87 verhindert;
 
       $statement->execute();
     }

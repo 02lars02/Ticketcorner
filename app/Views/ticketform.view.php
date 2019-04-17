@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Ticketkauf bearbeiten</title>
+    <title><?= $isEdit ? 'Ticketkauf bearbeiten' : 'Ticketkauf erfassen' ?> - Tikitas</title>
     <?php require 'core/basicincludes.php'; ?>
 </head>
 <body class="form">

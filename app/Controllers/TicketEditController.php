@@ -24,7 +24,7 @@
         $ticketBuy->update();
         header('Location: notpaid');
       }
-    } else if($_GET["id"] == null || !is_numeric($_GET["id"])) {
+    } else if(!is_numeric($_GET["id"])) {
         header('Location: notpaid');
     } else {
         $ticketBuy = TicketBuy::getByID($_GET["id"]);
